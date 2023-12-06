@@ -17,9 +17,10 @@ import {
 } from "@/components/ui";
 import { PostValidation } from "@/lib/validation";
 import { useToast } from "@/components/ui/use-toast";
-import { useUserContext } from "@/context/AuthContext";
-import { FileUploader, Loader } from "@/components/shared";
+import Loader from "@/components/shared/Loader";
 import { useCreatePost, useUpdatePost } from "@/lib/react-query/queries";
+import FileUploader from "../shared/FileUploader";
+import { useUserContext } from "@/_auth/context/AuthContext";
 
 type PostFormProps = {
   post?: Models.Document;
@@ -41,9 +42,9 @@ const PostForm = ({ post, action }: PostFormProps) => {
   });
 
   // Query
-  const { mutateAsync: createPost, isLoading: isLoadingCreate } =
+  const { mutateAsync: createPost, isPending: isLoadingCreate } =
     useCreatePost();
-  const { mutateAsync: updatePost, isLoading: isLoadingUpdate } =
+  const { mutateAsync: updatePost, isPending: isLoadingUpdate } =
     useUpdatePost();
 
   // Handler
@@ -55,6 +56,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
         postId: post.$id,
         imageId: post.imageId,
         imageUrl: post.imageUrl,
+        caption: value.caption || '',
       });
 
       if (!updatedPost) {
