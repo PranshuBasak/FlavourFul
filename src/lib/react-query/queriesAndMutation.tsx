@@ -4,7 +4,7 @@ useMutation,
 useQueryClient,
 useInfiniteQuery,
 } from "@tanstack/react-query";
-
+// @ts-nocheck 
 import { QUERY_KEYS } from "@/lib/react-query/queryKeys";
 import {
 createUserAccount,
@@ -201,7 +201,7 @@ export const useSearchPosts = (searchTerm: string) => {
     enabled: !!searchTerm,
   });
 };
-
+// @ts-nocheck 
 export const useGetPosts = () => {
   return useInfiniteQuery({
     queryKey: [QUERY_KEYS.GET_INFINITE_POSTS],

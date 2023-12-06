@@ -1,17 +1,16 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 
 import { Button } from "@/components/ui";
-import  Loader  from "@/components/shared/Loader";
-import  GridPostList  from "@/components/shared/GridPostList";
-import   PostStats from "@/components/shared/PostStats";
+import { Loader } from "@/components/shared";
+import { GridPostList, PostStats } from "@/components/shared";
 
 import {
   useGetPostById,
   useGetUserPosts,
   useDeletePost,
-} from "@/lib/react-query/queriesAndMutation";
+} from "@/lib/react-query/queries";
 import { multiFormatDateString } from "@/lib/utils";
-import { useUserContext } from "@/_auth/context/AuthContext";
+import { useUserContext } from "@/context/AuthContext";
 
 const PostDetails = () => {
   const navigate = useNavigate();
@@ -30,7 +29,7 @@ const PostDetails = () => {
 
   const handleDeletePost = () => {
     deletePost({ postId: id, imageId: post?.imageId });
-    navigate("/");
+    navigate(-1);
   };
 
   return (

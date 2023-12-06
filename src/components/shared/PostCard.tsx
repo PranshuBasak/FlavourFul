@@ -1,9 +1,9 @@
 import { Models } from "appwrite";
 import { Link } from "react-router-dom";
 
+import { PostStats } from "@/components/shared";
 import { multiFormatDateString } from "@/lib/utils";
-import { useUserContext } from "@/_auth/context/AuthContext";
-import PostStats from "./PostStats";
+import { useUserContext } from "@/context/AuthContext";
 
 type PostCardProps = {
   post: Models.Document;
@@ -36,7 +36,6 @@ const PostCard = ({ post }: PostCardProps) => {
             <div className="flex-center gap-2 text-light-3">
               <p className="subtle-semibold lg:small-regular ">
                 {multiFormatDateString(post.$createdAt)}
-                
               </p>
               •
               <p className="subtle-semibold lg:small-regular">
